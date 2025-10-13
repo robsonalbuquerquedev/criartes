@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Desafio: 1 ano em 14 semanas",
-  description: "Acompanhe os vídeos da professora Laiane Mochi e torne-se um poliglota junto com ela!",
+  title: "Criartes | Criações que Inspiram",
+  description:
+    "Um espaço para expressar criatividade e fé através de artes, projetos e mensagens especiais criadas por Robson Albuquerque.",
 };
 
 export default function RootLayout({
