@@ -3,7 +3,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaYoutube, FaPlay } from "react-icons/fa";
+import { FaYoutube, FaPlay, FaBirthdayCake, FaMusic, FaHeart } from "react-icons/fa";
 
 export default function DesafioPage() {
     const videos = [
@@ -23,7 +23,54 @@ export default function DesafioPage() {
 
     return (
         <main className="min-h-screen bg-[#FFFDFD] text-[#510505] p-8">
-            {/* Cabeçalho animado */}
+            {/* 🎉 Homenagem de aniversário com foto em destaque */}
+            <motion.section
+                className="bg-gradient-to-r from-pink-100 via-yellow-100 to-pink-100 rounded-3xl shadow-md p-8 mb-10 border border-[#510505]/20 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left"
+                initial={{ opacity: 0, y: -40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}
+            >
+                {/* Texto e ícones */}
+                <div className="flex-1">
+                    <motion.h1
+                        className="text-4xl font-bold mb-3 text-[#7A1A1A] flex justify-center md:justify-start items-center gap-3"
+                        initial={{ scale: 0.8 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <FaBirthdayCake className="text-pink-500" />
+                        Feliz Aniversário, <span className="text-[#510505]">Teacher Laiane Mochi!</span> 🎉
+                    </motion.h1>
+
+                    <p className="text-lg text-[#510505] mt-3 max-w-xl">
+                        Hoje é dia de celebrar o dom da sua vida, da sua alegria e da sua paixão por ensinar!
+                        Que Deus continue te abençoando com muita sabedoria, amor e sucesso! 💖🎶
+                    </p>
+
+                    <div className="flex justify-center md:justify-start gap-4 mt-4 text-2xl">
+                        <FaMusic className="text-pink-500" />
+                        <FaHeart className="text-red-500" />
+                        <FaBirthdayCake className="text-yellow-500" />
+                        <FaMusic className="text-pink-500" />
+                    </div>
+                </div>
+
+                {/* Imagem da homenageada */}
+                <motion.div
+                    className="flex-shrink-0"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1 }}
+                >
+                    <img
+                        src="/laianemochi.jpg"
+                        alt="Laiane Mochi"
+                        className="w-48 h-48 object-cover rounded-full shadow-lg border-4 border-pink-200"
+                    />
+                </motion.div>
+            </motion.section>
+
+            {/* Cabeçalho do Desafio */}
             <motion.header
                 className="text-center mb-10"
                 initial={{ opacity: 0, y: -30 }}
@@ -40,7 +87,7 @@ export default function DesafioPage() {
                 </p>
             </motion.header>
 
-            {/* Grade de cards */}
+            {/* Grade de vídeos */}
             <section className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
                 {videos.map((video, index) => (
                     <motion.article
