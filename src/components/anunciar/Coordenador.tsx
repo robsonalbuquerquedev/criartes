@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Sparkles, Heart } from "lucide-react";
 import { coordenadores } from "@/data/coordenadores";
 
 export default function Coordenador() {
@@ -106,18 +107,37 @@ export default function Coordenador() {
                     transition={{ duration: 0.4 }}
                     className="w-full flex-1 flex items-center justify-center"
                 >
-                    <div className="w-full h-full max-h-60 overflow-hidden rounded-xl flex gap-3">
-                        {coord.foto.map((img, i) => (
-                            <div key={i} className="flex-1 h-full">
+                    <div
+                        className={`
+            w-full h-full max-h-60 overflow-hidden rounded-xl flex gap-3
+            ${coord.foto.length === 1 ? "justify-center" : ""}
+        `}
+                    >
+                        {coord.foto.length === 1 ? (
+                            // Foto única seguindo o padrão das duas fotos
+                            <div className="flex-1 max-w-[50%] h-full flex">
                                 <Image
-                                    src={img}
+                                    src={coord.foto[0]}
                                     alt={coord.nomes}
                                     width={500}
                                     height={500}
                                     className="object-cover w-full h-full rounded-xl shadow-lg border border-white/40"
                                 />
                             </div>
-                        ))}
+                        ) : (
+                            // Quando houver 2 fotos
+                            coord.foto.map((img, i) => (
+                                <div key={i} className="flex-1 h-full">
+                                    <Image
+                                        src={img}
+                                        alt={coord.nomes}
+                                        width={500}
+                                        height={500}
+                                        className="object-cover w-full h-full rounded-xl shadow-lg border border-white/40"
+                                    />
+                                </div>
+                            ))
+                        )}
                     </div>
                 </motion.div>
 
@@ -160,21 +180,37 @@ export default function Coordenador() {
                     <span className="block mt-4">“{coord.mensagem}”</span>
                 </motion.p>
 
-                {/* Logo sozinha com destaque */}
+                {/* Ícones elegantes — aparecem apenas no mobile */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6 }}
-                    className="mt-6 flex justify-center"
+                    className="mt-6 flex md:hidden justify-center gap-4"
+                >
+                    <Sparkles
+                        className="w-6 h-6 text-sky-600 drop-shadow-[0_0_8px_rgba(30,144,255,0.4)]"
+                    />
+                    <Heart
+                        className="w-6 h-6 text-rose-600 drop-shadow-[0_0_8px_rgba(255,0,80,0.4)]"
+                    />
+                </motion.div>
+
+                {/* Logo — aparece apenas no desktop */}
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6 }}
+                    className="mt-6 hidden md:flex justify-center"
                 >
                     <Image
                         src="/images/logo.png"
                         width={105}
                         height={105}
                         alt="Logo"
-                        className="opacity-95 drop-shadow-[0_0_12px_rgba(30,144,255,0.35)] 
-                   hover:drop-shadow-[0_0_18px_rgba(30,144,255,0.5)] 
-                   transition-all duration-500"
+                        className="opacity-95 
+               drop-shadow-[0_0_12px_rgba(30,144,255,0.35)] 
+               hover:drop-shadow-[0_0_18px_rgba(30,144,255,0.5)] 
+               transition-all duration-500"
                     />
                 </motion.div>
             </div>
